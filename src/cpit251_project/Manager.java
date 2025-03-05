@@ -19,6 +19,12 @@ public class Manager {
 
             System.out.print("Enter end date (YYYY-MM-DD): ");
             LocalDate endDate = LocalDate.parse(inputscanner.nextLine());
+            
+            if(startDate==null||endDate==null){
+                System.out.println("Error: Invalid date format. Please use YYYY-MM-DD.");
+                return null;
+              
+            }
 
             if (startDate.isAfter(endDate)) {
                 System.out.println("Error: Start date must be before or equal to end date.");
