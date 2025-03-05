@@ -26,6 +26,19 @@ public class Transaction {
         return endDate;
     }
 
+    public void setTransactionName(String transactionName) {
+        this.transactionName = transactionName;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    
     @Override
     public String toString() {
         return String.format("Transaction Name: %s%nStart Date: %s%nEnd Date: %s",
