@@ -1,25 +1,21 @@
-
 package cpit251_project;
 
 import java.time.LocalDate;
 
 public class Transaction {
-    
-   
-    private String  TransactionName;
+
+    private String transactionName;
     private LocalDate startDate;
     private LocalDate endDate;
 
     public Transaction(String TransactionName, LocalDate startDate, LocalDate endDate) {
-        this.TransactionName = TransactionName;
+        this.transactionName = TransactionName;
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    
-
-    public String getDescription() {
-        return TransactionName;
+    public String getTransactionName() {
+        return transactionName;
     }
 
     public LocalDate getStartDate() {
@@ -32,9 +28,8 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return "Transaction Name: " + TransactionName +
-               "\nStart Date: " + startDate +
-               "\nEnd Date: " + endDate;
-    
-}
+        return String.format("Transaction Name: %s%nStart Date: %s%nEnd Date: %s",
+                transactionName, startDate, endDate);
+    }
+
 }
