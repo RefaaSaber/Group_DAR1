@@ -7,11 +7,14 @@ public class Transaction {
     private String transactionName;
     private LocalDate startDate;
     private LocalDate endDate;
+    private static int idCounter = 1; 
+    private int ID;
 
     public Transaction(String TransactionName, LocalDate startDate, LocalDate endDate) {
         this.transactionName = TransactionName;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.ID = idCounter++;
     }
 
     public String getTransactionName() {
