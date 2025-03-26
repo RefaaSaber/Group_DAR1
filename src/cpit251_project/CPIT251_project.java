@@ -10,7 +10,7 @@ public class CPIT251_project {
        Transaction transaction = manager.createTransaction();
 
         if (transaction != null) {
-            TransactionFile transactionFile = new TransactionFile();
+            TransactionFileClass transactionFile = new TransactionFileClass();
             transactionFile.saveToFile(transaction);
         }
     }
