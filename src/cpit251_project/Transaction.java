@@ -16,6 +16,10 @@ public class Transaction {
         this.endDate = endDate;
         this.ID = idCounter++;
     }
+    
+    public int getID(){
+        return ID;
+    }
 
     public String getTransactionName() {
         return transactionName;
@@ -44,8 +48,7 @@ public class Transaction {
     
     @Override
     public String toString() {
-        return String.format("Transaction Name: %s%nStart Date: %s%nEnd Date: %s",
-                transactionName, startDate, endDate);
+         return String.format("Transaction ID: %d%nTransaction Name: %s%nStart Date: %s%nEnd Date: %s",
+                ID, transactionName, startDate, endDate);
     }
-
 }
