@@ -14,7 +14,13 @@ public class Transaction {
         this.transactionName = transactionName;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.ID = System.currentTimeMillis() + "-" + idCounter++;
+        this.ID = generateID();
+    }
+    
+    private static synchronized String generateID() {
+        return System.currentTimeMillis() + "-" + idCounter++;
+
+
     }
     
     public String getID(){
