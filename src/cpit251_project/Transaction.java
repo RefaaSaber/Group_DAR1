@@ -7,11 +7,24 @@ public class Transaction {
     private String transactionName;
     private LocalDate startDate;
     private LocalDate endDate;
+    private static int idCounter = 1;
+    private final String ID; 
 
-    public Transaction(String TransactionName, LocalDate startDate, LocalDate endDate) {
-        this.transactionName = TransactionName;
+    public Transaction(String transactionName, LocalDate startDate, LocalDate endDate) {
+        this.transactionName = transactionName;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.ID = generateID();
+    }
+    
+    private static synchronized String generateID() {
+        return System.currentTimeMillis() + "-" + idCounter++;
+
+
+    }
+    
+    public String getID(){
+        return ID;
     }
 
     public String getTransactionName() {
@@ -26,10 +39,22 @@ public class Transaction {
         return endDate;
     }
 
-    @Override
-    public String toString() {
-        return String.format("Transaction Name: %s%nStart Date: %s%nEnd Date: %s",
-                transactionName, startDate, endDate);
+    public void setTransactionName(String transactionName) {
+        this.transactionName = transactionName;
     }
 
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    
+    @Override
+    public String toString() {
+          return String.format("Transaction ID: %s%nTransaction Name: %s%nStart Date: %s%nEnd Date: %s",
+            ID, transactionName, startDate, endDate);
+    }
 }
