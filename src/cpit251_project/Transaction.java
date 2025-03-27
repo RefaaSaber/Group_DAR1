@@ -19,6 +19,8 @@ public class Transaction {
     
     private static synchronized String generateID() {
         return System.currentTimeMillis() + "-" + idCounter++;
+
+
     }
     
     public String getID(){
