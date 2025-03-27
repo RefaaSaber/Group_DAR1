@@ -1,23 +1,23 @@
 package cpit251_project;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 public class Transaction {
 
     private String transactionName;
     private LocalDate startDate;
     private LocalDate endDate;
-    private String ID; 
+    private static int idCounter = 1;
+    private final String ID; 
 
-    public Transaction(String TransactionName, LocalDate startDate, LocalDate endDate) {
-        this.transactionName = TransactionName;
+    public Transaction(String transactionName, LocalDate startDate, LocalDate endDate) {
+        this.transactionName = transactionName;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.ID = UUID.randomUUID().toString(); 
+        this.ID = System.currentTimeMillis() + "-" + idCounter++;
     }
     
-    public String getID() {
+    public String getID(){
         return ID;
     }
 
@@ -48,7 +48,7 @@ public class Transaction {
     
     @Override
     public String toString() {
-        return String.format("Transaction ID: %s%nTransaction Name: %s%nStart Date: %s%nEnd Date: %s",
-                ID, transactionName, startDate, endDate);
+          return String.format("Transaction ID: %s%nTransaction Name: %s%nStart Date: %s%nEnd Date: %s",
+            ID, transactionName, startDate, endDate);
     }
 }
