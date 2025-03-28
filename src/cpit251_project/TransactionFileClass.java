@@ -13,7 +13,7 @@ public class TransactionFileClass {
             writer.write(transaction.getTransactionName() + "," +transaction.getID()+transaction.getStartDate() + "," + transaction.getEndDate() + "\n");
             System.out.println("Transaction saved to file!");
         } catch (IOException e) {
-            System.out.println("Error saving transaction: " + e.getMessage());
+           System.out.println("Error saving transaction: " + e.getMessage());
         }
     }
 }
