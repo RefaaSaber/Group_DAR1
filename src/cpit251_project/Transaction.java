@@ -1,14 +1,18 @@
 package cpit251_project;
 
 import java.time.LocalDate;
+import java.util.Random;
 
 public class Transaction {
 
     private String transactionName;
     private LocalDate startDate;
     private LocalDate endDate;
-    private static int idCounter = 1;
-    private final String ID; 
+    private final long ID; 
+    
+    //use random to make ID unique and it better than use counter
+    
+    private static final Random random = new Random();
 
     public Transaction(String transactionName, LocalDate startDate, LocalDate endDate) {
         this.transactionName = transactionName;
@@ -17,13 +21,13 @@ public class Transaction {
         this.ID = generateID();
     }
     
-    private static synchronized String generateID() {
-        return System.currentTimeMillis() + "-" + idCounter++;
+    private static synchronized long generateID() {
+        return System.currentTimeMillis() + random.nextInt(1_000_000);
 
 
     }
     
-    public String getID(){
+    public long getID(){
         return ID;
     }
 
