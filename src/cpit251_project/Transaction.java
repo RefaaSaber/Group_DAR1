@@ -1,6 +1,8 @@
 package cpit251_project;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Transaction {
 
@@ -9,18 +11,27 @@ public class Transaction {
     private LocalDate endDate;
     private static int idCounter = 1;  
     private final String ID;  
+    private static List<String> generatedIDs = new ArrayList<>();  // List to track generated IDs
 
     // Constructor
     public Transaction(String transactionName, LocalDate startDate, LocalDate endDate) {
         this.transactionName = transactionName;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.ID = generateID(); 
+        this.ID = generateUniqueID();  // Generate a unique ID
+    
     }
 
    
-    private static String generateID() {
-        return "Transaction-" + idCounter++; 
+   // Generate a unique transaction ID by checking manually for duplicates
+    private static String generateUniqueID() {
+        String newID = "Transaction-" + idCounter++;  // Generate ID
+        // Check if the ID already exists in the list
+        while (generatedIDs.contains(newID)) {
+            newID = "Transaction-" + idCounter++;  // Generate a new ID if duplicate found
+        }
+        generatedIDs.add(newID);  // Add the new unique ID to the list
+        return newID;  // Return the unique ID
     }
 
     // Getter methods
