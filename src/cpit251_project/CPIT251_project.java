@@ -27,6 +27,6 @@ public class CPIT251_project {
             }
         }
 
-        scanner.close();  // Close the Scanner after use
+        scanner.close();  
     }
 }
