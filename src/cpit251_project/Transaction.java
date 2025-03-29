@@ -7,23 +7,24 @@ public class Transaction {
     private String transactionName;
     private LocalDate startDate;
     private LocalDate endDate;
-    private static int idCounter = 1;
-    private final String ID; 
+    private static int idCounter = 1;  
+    private final String ID;  
 
+    // Constructor
     public Transaction(String transactionName, LocalDate startDate, LocalDate endDate) {
         this.transactionName = transactionName;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.ID = generateID();
+        this.ID = generateID(); 
     }
-    
-    private static synchronized String generateID() {
-        return System.currentTimeMillis() + "-" + idCounter++;
 
-
+   
+    private static String generateID() {
+        return "Transaction-" + idCounter++; 
     }
-    
-    public String getID(){
+
+    // Getter methods
+    public String getID() {
         return ID;
     }
 
@@ -39,6 +40,7 @@ public class Transaction {
         return endDate;
     }
 
+    // Setter methods
     public void setTransactionName(String transactionName) {
         this.transactionName = transactionName;
     }
