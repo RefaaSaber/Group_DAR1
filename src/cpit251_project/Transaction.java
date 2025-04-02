@@ -1,33 +1,41 @@
 package cpit251_project;
 
 import java.time.LocalDate;
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Transaction {
 
     private String transactionName;
     private LocalDate startDate;
     private LocalDate endDate;
-    private final long ID; 
-    
-    //use random to make ID unique and it better than use counter
-    
-    private static final Random random = new Random();
+    private static int idCounter = 1;  
+    private final String ID;  
+    private static List<String> generatedIDs = new ArrayList<>();  // List to track generated IDs
 
+    // Constructor
     public Transaction(String transactionName, LocalDate startDate, LocalDate endDate) {
         this.transactionName = transactionName;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.ID = generateID();
-    }
+        this.ID = generateUniqueID();  // Generate a unique ID
     
-    private static synchronized long generateID() {
-        return System.currentTimeMillis() + random.nextInt(1_000_000);
-
-
     }
-    
-    public long getID(){
+
+   
+   // Generate a unique transaction ID by checking manually for duplicates
+    private static String generateUniqueID() {
+        String newID = "Transaction-" + idCounter++;  // Generate ID
+        // Check if the ID already exists in the list
+        while (generatedIDs.contains(newID)) {
+            newID = "Transaction-" + idCounter++;  // Generate a new ID if duplicate found
+        }
+        generatedIDs.add(newID);  // Add the new unique ID to the list
+        return newID;  // Return the unique ID
+    }
+
+    // Getter methods
+    public String getID() {
         return ID;
     }
 
@@ -43,6 +51,7 @@ public class Transaction {
         return endDate;
     }
 
+    // Setter methods
     public void setTransactionName(String transactionName) {
         this.transactionName = transactionName;
     }
