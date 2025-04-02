@@ -10,7 +10,7 @@ public class TransactionFileClass {
 
     public void saveToFile(Transaction transaction) {
         try (FileWriter writer = new FileWriter(FILE_NAME, true)) {
-            writer.write(transaction.toString()+ "\n");
+            writer.write(transaction.getTransactionName() + "," +transaction.getID()+transaction.getStartDate() + "," + transaction.getEndDate() + "\n");
             System.out.println("Transaction saved to file!");
         } catch (IOException e) {
            System.out.println("Error saving transaction: " + e.getMessage());
