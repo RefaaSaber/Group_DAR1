@@ -46,10 +46,19 @@ public class Transaction {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("Transaction ID: %s\nTransaction Name: %s\nStart Date: %s\nEnd Date: %s\n", ID, transactionName, startDate, endDate));
-        sb.append("Assigned Employees:\n");
-        for (EmployeeAssignment ea : assignedEmployees) {
-            sb.append(ea.toString()).append("\n");
+        System.out.println("------------------------------");
+        sb.append("Transaction ID: ").append(ID)
+          .append("\nTransaction Name: ").append(transactionName)
+          .append("\nStart Date: ").append(startDate)
+          .append("\nEnd Date: ").append(endDate)
+          .append("\nAssigned Employees: ");
+
+        if (assignedEmployees.isEmpty()) {
+            sb.append("No employees assigned.");
+        } else {
+            for (EmployeeAssignment ea : assignedEmployees) {
+                sb.append("\n").append(ea);
+            }
         }
         return sb.toString();
     }
