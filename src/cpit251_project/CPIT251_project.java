@@ -1,18 +1,28 @@
 
-package cpit251_project;
+public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Manager manager = new Manager();
 
+        // Loop to ask if the user wants to create another transaction
+        while (true) {
+            Transaction transaction = manager.createTransaction();
 
-public class CPIT251_project {
+            if (transaction != null) {
+                TransactionFileClass transactionFile = new TransactionFileClass();
+                transactionFile.saveToFile(transaction);
+            }
 
-    
-    public static void main(String[] args) {
-         Manager manager = new Manager();
-       Transaction transaction = manager.createTransaction();
+            // Ask the user if they want to create another transaction
+            System.out.print("Do you want to create another transaction? (yes/no): ");
+            String answer = scanner.nextLine().trim().toLowerCase();
 
-        if (transaction != null) {
-            TransactionFileClass transactionFile = new TransactionFileClass();
-            transactionFile.saveToFile(transaction);
+            if (answer.equals("no")) {
+                System.out.println("Thank you for using the system.");
+                break;  // Exit the loop if the answer is "no"
+            }
         }
+
+        scanner.close();  
     }
-    
 }
+
