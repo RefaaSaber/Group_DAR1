@@ -1,6 +1,7 @@
 package cpit251_project;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Manager {
@@ -29,8 +30,14 @@ public class Manager {
     }
 
     private LocalDate getDateInput(String prompt) {
-        System.out.print(prompt);
-        return LocalDate.parse(inputScanner.nextLine().trim());
+        while (true) {
+            System.out.print(prompt);
+            try {
+                return LocalDate.parse(inputScanner.nextLine().trim());
+            } catch (DateTimeParseException e) {
+                System.out.println("Error: Invalid date format. Please use YYYY-MM-DD.");
+            }
+        }
     }
 
     private void assignEmployees(Transaction transaction, LocalDate startDate, LocalDate endDate) {
@@ -39,7 +46,15 @@ public class Manager {
             String employeeName = inputScanner.nextLine().trim();
             if (employeeName.equalsIgnoreCase("done")) break;
 
-            LocalDate deadline = getDateInput("Enter deadline for employee (YYYY-MM-DD): ");
+            LocalDate deadline;
+            while (true) {
+                try {
+                    deadline = getDateInput("Enter deadline for employee (YYYY-MM-DD): ");
+                    break;
+                } catch (DateTimeParseException e) {
+                    System.out.println("Error: Invalid date format. Please use YYYY-MM-DD.");
+                }
+            }
 
             if (deadline.isBefore(startDate) || deadline.isAfter(endDate)) {
                 System.out.println("Error: Deadline must be within the transaction period.");
@@ -50,3 +65,4 @@ public class Manager {
         }
     }
 }
+
