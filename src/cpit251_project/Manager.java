@@ -6,17 +6,17 @@ import java.util.Scanner;
 
 public class Manager {
     public Transaction createTransaction() {
-        Scanner inputscanner = new Scanner(System.in);
+        Scanner inputScanner = new Scanner(System.in);
         try {
             System.out.print("----------------------------");
             System.out.print("Enter Transaction Name: ");
-            String transactionName = inputscanner.nextLine();
+            String transactionName = inputScanner.nextLine();
 
             System.out.print("Enter start date (YYYY-MM-DD): ");
-            LocalDate startDate = LocalDate.parse(inputscanner.nextLine());
+            LocalDate startDate = LocalDate.parse(inputScanner.nextLine());
 
             System.out.print("Enter end date (YYYY-MM-DD): ");
-            LocalDate endDate = LocalDate.parse(inputscanner.nextLine());
+            LocalDate endDate = LocalDate.parse(inputScanner.nextLine());
 
             if (startDate.isAfter(endDate)) {
                 System.out.println("Error: Start date must be before or equal to end date.");
@@ -27,11 +27,11 @@ public class Manager {
 
             while (true) {
                 System.out.print("Assign employee (or type 'done' to finish): ");
-                String employeeName = inputscanner.nextLine().trim();
+                String employeeName = inputScanner.nextLine().trim();
                 if (employeeName.equalsIgnoreCase("done")) break;
 
                 System.out.print("Enter deadline for employee (YYYY-MM-DD): ");
-                LocalDate deadline = LocalDate.parse(inputscanner.nextLine());
+                LocalDate deadline = LocalDate.parse(inputScanner.nextLine());
 
                 if (deadline.isBefore(startDate) || deadline.isAfter(endDate)) {
                     System.out.println("Error: Deadline must be within the transaction period.");
