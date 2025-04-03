@@ -8,6 +8,7 @@ public class Manager {
     public Transaction createTransaction() {
         Scanner inputscanner = new Scanner(System.in);
         try {
+            System.out.print("----------------------------");
             System.out.print("Enter Transaction Name: ");
             String transactionName = inputscanner.nextLine();
 
@@ -39,7 +40,7 @@ public class Manager {
 
                 newTransaction.assignEmployee(employeeName, deadline);
             }
-
+            System.out.print("---------------------------------- ");
             System.out.println("Transaction Created Successfully!");
             System.out.println(newTransaction);
             return newTransaction;
