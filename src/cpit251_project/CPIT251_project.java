@@ -13,7 +13,7 @@ public class CPIT251_project {
 
             if (transaction != null) {
                 TransactionFileClass transactionFile = new TransactionFileClass();
-                transactionFile.saveToFile(transaction);
+                transactionFile.appendTransactionToFile(transaction);
             }
 
             System.out.print("Do you want to create another transaction? (yes/no): ");
