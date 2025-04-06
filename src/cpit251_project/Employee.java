@@ -14,11 +14,8 @@ public class Employee {
     }
 
     public void receiveTransaction(Transaction transaction) {
-        List<EmployeeAssignment> assignments = transaction.getAssignedEmployees();
-
-        for (int i = 0; i < assignments.size(); i++) {
-            EmployeeAssignment ea = assignments.get(i);
-            if (ea.getEmployeeName().equalsIgnoreCase(name)) {
+        for (EmployeeAssignment assignedName : transaction.getAssignedEmployees()) {
+            if (assignedName.getEmployeeName().equalsIgnoreCase(name)) {
                 assignedTransactions.add(transaction);
                 break;
             }
