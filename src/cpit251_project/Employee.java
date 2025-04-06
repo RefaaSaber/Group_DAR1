@@ -44,7 +44,7 @@ public class Employee {
             System.out.println("No transactions assigned.");
         } else {
             for (Transaction t : assignedTransactions) {
-                System.out.println(t); // prints details via toString()
+                System.out.println(t);
                 System.out.println("---------------------------------");
             }
         }

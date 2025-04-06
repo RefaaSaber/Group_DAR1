@@ -38,29 +38,43 @@ public class Transaction {
         return assignedEmployees;
     }
 
-    public String getID() { return ID; }
-    public String getTransactionName() { return transactionName; }
-    public LocalDate getStartDate() { return startDate; }
-    public LocalDate getEndDate() { return endDate; }
-    
-    
-    public void setTransactionName(String transactionName) {
-    this.transactionName = transactionName;}
-    public void setStartDate(LocalDate startDate) {
-    this.startDate = startDate;}
-    public void setEndDate(LocalDate endDate) {
-    this.endDate = endDate;}
+    public String getID() {
+        return ID;
+    }
 
+    public String getTransactionName() {
+        return transactionName;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setTransactionName(String transactionName) {
+        this.transactionName = transactionName;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         System.out.println("------------------------------");
         sb.append("Transaction ID: ").append(ID)
-          .append("\nTransaction Name: ").append(transactionName)
-          .append("\nStart Date: ").append(startDate)
-          .append("\nEnd Date: ").append(endDate)
-          .append("\nAssigned Employees: ");
+                .append("\nTransaction Name: ").append(transactionName)
+                .append("\nStart Date: ").append(startDate)
+                .append("\nEnd Date: ").append(endDate)
+                .append("\nAssigned Employees: ");
 
         if (assignedEmployees.isEmpty()) {
             sb.append("No employees assigned.");
