@@ -13,6 +13,22 @@ public class Employee {
         this.assignedTransactions = new ArrayList<>();
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Transaction> getAssignedTransactions() {
+        return assignedTransactions;
+    }
+
+    public void setAssignedTransactions(List<Transaction> transactions) {
+        this.assignedTransactions = transactions;
+    }
+
     public void receiveTransaction(Transaction transaction) {
         for (EmployeeAssignment assignedName : transaction.getAssignedEmployees()) {
             if (assignedName.getEmployeeName().equalsIgnoreCase(name)) {
