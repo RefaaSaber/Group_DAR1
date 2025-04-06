@@ -1,12 +1,11 @@
-
 package cpit251_project;
 
 import java.io.FileWriter;
 import java.io.IOException;
 
-
 public class TransactionFileClass {
-     private static final String FILE_NAME = "transactions.txt";
+
+    private static final String FILE_NAME = "transactions.txt";
 
     public void appendTransactionToFile(Transaction transaction) {
         try (FileWriter writer = new FileWriter(FILE_NAME, true)) {

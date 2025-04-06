@@ -5,6 +5,7 @@ import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Manager {
+
     private final Scanner inputScanner = new Scanner(System.in);
 
     public Transaction createTransaction() {
@@ -44,7 +45,9 @@ public class Manager {
         while (true) {
             System.out.print("Assign employee (or type 'done' to finish): ");
             String employeeName = inputScanner.nextLine().trim();
-            if (employeeName.equalsIgnoreCase("done")) break;
+            if (employeeName.equalsIgnoreCase("done")) {
+                break;
+            }
 
             LocalDate deadline;
             while (true) {
@@ -65,4 +68,3 @@ public class Manager {
         }
     }
 }
-
