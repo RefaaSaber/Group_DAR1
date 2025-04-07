@@ -9,7 +9,7 @@ public class Manager {
     private final Scanner inputScanner = new Scanner(System.in);
 
     public Transaction createTransaction() {
-        System.out.print("----------------------------");
+        System.out.println("----------------------------");
         System.out.print("Enter Transaction Name: ");
         String transactionName = inputScanner.nextLine();
 
