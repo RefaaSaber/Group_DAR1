@@ -24,7 +24,7 @@ public class Manager {
         Transaction newTransaction = new Transaction(transactionName, startDate, endDate);
         assignEmployees(newTransaction, startDate, endDate);
 
-        System.out.print("---------------------------------- ");
+        System.out.println("---------------------------------- ");
         System.out.println("Transaction Created Successfully!");
         System.out.println(newTransaction);
         return newTransaction;
