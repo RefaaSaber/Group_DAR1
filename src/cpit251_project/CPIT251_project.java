@@ -11,20 +11,27 @@ public class CPIT251_project {
         Manager manager = new Manager();
         List<Transaction> allTransactions = new ArrayList<>();
 
+        System.out.println("Welcome to the Transaction System!");
+        System.out.println("==================================");
+
         while (true) {
-            System.out.println("Are you a (1) Manager or (2) Employee? (3 to Exit)");
+            System.out.println("\nAre you a (1) Manager or (2) Employee? (3 to Exit)");
             String role = scanner.nextLine().trim();
 
             if (role.equals("1")) {
+                System.out.println("\n--------- Manager Section ---------");
                 Transaction transaction = manager.createTransaction();
 
                 if (transaction != null) {
                     allTransactions.add(transaction);
                     TransactionFileClass transactionFile = new TransactionFileClass();
                     transactionFile.appendTransactionToFile(transaction);
+                    System.out.println("Transaction successfully created and saved.");
                 }
+                System.out.println("--------- End of Manager Section ---------");
 
             } else if (role.equals("2")) {
+                System.out.println("\n--------- Employee Section ---------");
                 System.out.print("Enter your name: ");
                 String employeeName = scanner.nextLine().trim();
                 Employee employee = new Employee(employeeName);
@@ -32,8 +39,8 @@ public class CPIT251_project {
                 for (Transaction t : allTransactions) {
                     employee.receiveTransaction(t);
                 }
-
                 employee.viewAssignedTransactions();
+                System.out.println("--------- End of Employee Section ---------");
 
             } else if (role.equals("3")) {
                 System.out.println("Thank you for using the system.");
@@ -41,6 +48,8 @@ public class CPIT251_project {
             } else {
                 System.out.println("Invalid option. Try again.");
             }
+
+            System.out.println("==================================");
         }
 
         scanner.close();
