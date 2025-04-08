@@ -9,62 +9,61 @@ public class Manager {
     private final Scanner inputScanner = new Scanner(System.in);
 
     public Transaction createTransaction() {
-        System.out.println("----------------------------");
-        System.out.print("Enter Transaction Name: ");
-        String transactionName = inputScanner.nextLine();
+        printHeader("Create New Transaction");
 
-        LocalDate startDate = getDateInput("Enter start date (YYYY-MM-DD): ");
-        LocalDate endDate = getDateInput("Enter end date (YYYY-MM-DD): ");
+        String transactionName = promptText("Enter Transaction Name: ");
+        LocalDate startDate = promptDate("Enter start date (YYYY-MM-DD): ");
+        LocalDate endDate = promptDate("Enter end date (YYYY-MM-DD): ");
 
         if (startDate.isAfter(endDate)) {
-            System.out.println("Error: Start date must be before or equal to end date.");
+            System.out.println(" Error: Start date must be before or equal to end date.");
             return null;
         }
 
-        Transaction newTransaction = new Transaction(transactionName, startDate, endDate);
-        assignEmployees(newTransaction, startDate, endDate);
+        Transaction transaction = new Transaction(transactionName, startDate, endDate);
+        assignEmployees(transaction, startDate, endDate);
 
-        System.out.println("---------------------------------- ");
-        System.out.println("Transaction Created Successfully!");
-        System.out.println(newTransaction);
-        return newTransaction;
+        printHeader("Transaction Created Successfully!");
+        System.out.println(transaction);
+        return transaction;
     }
 
-    private LocalDate getDateInput(String prompt) {
+    private String promptText(String prompt) {
+        System.out.print(prompt);
+        return inputScanner.nextLine().trim();
+    }
+
+    private LocalDate promptDate(String prompt) {
         while (true) {
-            System.out.print(prompt);
             try {
-                return LocalDate.parse(inputScanner.nextLine().trim());
+                return LocalDate.parse(promptText(prompt));
             } catch (DateTimeParseException e) {
-                System.out.println("Error: Invalid date format. Please use YYYY-MM-DD.");
+                System.out.println(" Error: Invalid date format. Please use YYYY-MM-DD.");
             }
         }
     }
+   private void assignEmployees(Transaction transaction, LocalDate startDate, LocalDate endDate) {
+        printHeader("Assign Employees");
 
-    private void assignEmployees(Transaction transaction, LocalDate startDate, LocalDate endDate) {
         while (true) {
-            System.out.print("Assign employee (or type 'done' to finish): ");
-            String employeeName = inputScanner.nextLine().trim();
+            String employeeName = promptText("Assign employee (or type 'done' to finish): ");
             if (employeeName.equalsIgnoreCase("done")) {
                 break;
             }
 
-            LocalDate deadline;
-            while (true) {
-                try {
-                    deadline = getDateInput("Enter deadline for employee (YYYY-MM-DD): ");
-                    break;
-                } catch (DateTimeParseException e) {
-                    System.out.println("Error: Invalid date format. Please use YYYY-MM-DD.");
-                }
-            }
-
+            LocalDate deadline = promptDate("Enter deadline for employee (YYYY-MM-DD): ");
             if (deadline.isBefore(startDate) || deadline.isAfter(endDate)) {
-                System.out.println("Error: Deadline must be within the transaction period.");
+                System.out.println("  Deadline must be within the transaction period.");
                 continue;
             }
 
             transaction.assignEmployee(employeeName, deadline);
         }
+    }
+
+    private void printHeader(String title) {
+        System.out.println("\n------------------------------");
+        System.out.println(title);
+        System.out.println("------------------------------");
     }
 }
