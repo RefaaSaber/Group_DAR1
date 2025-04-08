@@ -39,14 +39,15 @@ public class Employee {
     }
 
     public void viewAssignedTransactions() {
-        System.out.println("Transactions assigned to " + name + ":");
-        if (assignedTransactions.isEmpty()) {
-            System.out.println("No transactions assigned.");
-        } else {
-            for (Transaction t : assignedTransactions) {
-                System.out.println(t);
-                System.out.println("---------------------------------");
-            }
+    System.out.println("Transactions assigned to " + name + ":");
+    if (assignedTransactions.isEmpty()) {
+        System.out.println("No transactions assigned.");
+    } else {
+        for (Transaction t : assignedTransactions) {
+            System.out.println(t);
+            System.out.println("---------------------------------");
         }
     }
+}
+
 }
