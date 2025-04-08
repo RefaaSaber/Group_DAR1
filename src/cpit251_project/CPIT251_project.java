@@ -11,6 +11,7 @@ public class CPIT251_project {
         Manager manager = new Manager();
         List<Transaction> allTransactions = new ArrayList<>();
 
+        System.out.println("==================================");
         System.out.println("Welcome to the Transaction System!");
         System.out.println("==================================");
 
@@ -36,12 +37,20 @@ public class CPIT251_project {
                 String employeeName = scanner.nextLine().trim();
                 Employee employee = new Employee(employeeName);
 
+              
                 for (Transaction t : allTransactions) {
-                    employee.receiveTransaction(t);
+                    for (EmployeeAssignment assignedEmployee : t.getAssignedEmployees()) {
+                        if (assignedEmployee.getEmployeeName().equalsIgnoreCase(employeeName)) {
+                            employee.receiveTransaction(t);  
+                            break;  
+                        }
+                    }
                 }
+               
                 employee.viewAssignedTransactions();
                 System.out.println("--------- End of Employee Section ---------");
-
+                
+                
             } else if (role.equals("3")) {
                 System.out.println("Thank you for using the system.");
                 break;
