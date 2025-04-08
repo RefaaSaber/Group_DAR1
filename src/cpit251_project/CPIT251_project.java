@@ -16,20 +16,19 @@ public class CPIT251_project {
         System.out.println("==================================");
 
         while (true) {
-            System.out.println("\nAre you a (1) Manager or (2) Employee? (3 to Exit)");
+            System.out.print("\nAre you a (1) Manager, (2) Employee, or (3) Exit? ");
             String role = scanner.nextLine().trim();
 
             if (role.equals("1")) {
-                System.out.println("\n--------- Manager Section ---------");
+                System.out.println("\n--- Manager Section ---");
                 Transaction transaction = manager.createTransaction();
 
                 if (transaction != null) {
                     allTransactions.add(transaction);
-                    TransactionFileClass transactionFile = new TransactionFileClass();
-                    transactionFile.appendTransactionToFile(transaction);
+                    new TransactionFileClass().appendTransactionToFile(transaction);
                     System.out.println("Transaction successfully created and saved.");
                 }
-                System.out.println("--------- End of Manager Section ---------");
+                System.out.println("--- End of Manager Section ---");
 
             } else if (role.equals("2")) {
                 System.out.println("\n--------- Employee Section ---------");
@@ -60,6 +59,10 @@ public class CPIT251_project {
 
             System.out.println("==================================");
         }
+
+        scanner.close();
+    }
+}
 
         scanner.close();
     }
