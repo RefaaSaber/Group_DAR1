@@ -32,7 +32,9 @@ public class Employee {
     public void receiveTransaction(Transaction transaction) {
         for (EmployeeAssignment assignedName : transaction.getAssignedEmployees()) {
             if (assignedName.getEmployeeName().equalsIgnoreCase(name)) {
-                assignedTransactions.add(transaction);
+                if (!assignedTransactions.contains(transaction)) {
+                    assignedTransactions.add(transaction);
+                }
                 break;
             }
         }
@@ -49,4 +51,5 @@ public class Employee {
             }
         }
     }
+
 }
