@@ -22,6 +22,6 @@ public class EmployeeAssignment {
 
     @Override
     public String toString() {
-        return String.format("Employee: %s, Deadline: %s", employeeName, deadline);
-    }
+    return "Employee: " + employeeName + ", Deadline: " + deadline;
+}
 }
