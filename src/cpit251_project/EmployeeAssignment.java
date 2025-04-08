@@ -19,7 +19,15 @@ public class EmployeeAssignment {
     public LocalDate getDeadline() {
         return deadline;
     }
+    
+public void setEmployeeName(String employeeName) {
+    this.employeeName = employeeName;
+}
 
+
+public void setDeadline(LocalDate deadline) {
+    this.deadline = deadline;
+}
     @Override
     public String toString() {
     return "Employee: " + employeeName + ", Deadline: " + deadline;
