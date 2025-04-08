@@ -12,7 +12,7 @@ public class Transaction {
     private static int idCounter = 1;
     private final String ID;
     private static List<String> generatedIDs = new ArrayList<>();
-    private List<EmployeeAssignment> assignedEmployees = new ArrayList<>();
+    private final List<EmployeeAssignment> assignedEmployees = new ArrayList<>();
 
     public Transaction(String transactionName, LocalDate startDate, LocalDate endDate) {
         this.transactionName = transactionName;
@@ -22,13 +22,13 @@ public class Transaction {
     }
 
     private static String generateUniqueID() {
-        String newID = "Transaction-" + idCounter++;
-        while (generatedIDs.contains(newID)) {
-            newID = "Transaction-" + idCounter++;
-        }
-        generatedIDs.add(newID);
-        return newID;
-    }
+        String newID;
+    do {
+        newID = "Transaction-" + idCounter++;
+    }    while (generatedIDs.contains(newID));
+    generatedIDs.add(newID);
+    return newID;
+}
 
     public void assignEmployee(String employeeName, LocalDate deadline) {
         assignedEmployees.add(new EmployeeAssignment(employeeName, deadline));
@@ -68,21 +68,22 @@ public class Transaction {
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        System.out.println("------------------------------");
-        sb.append("Transaction ID: ").append(ID)
-                .append("\nTransaction Name: ").append(transactionName)
-                .append("\nStart Date: ").append(startDate)
-                .append("\nEnd Date: ").append(endDate)
-                .append("\nAssigned Employees: ");
+    StringBuilder sb = new StringBuilder();
+    sb.append("------------------------------\n");
+    sb.append("Transaction ID: ").append(ID)
+      .append("\nTransaction Name: ").append(transactionName)
+      .append("\nStart Date: ").append(startDate)
+      .append("\nEnd Date: ").append(endDate)
+      .append("\nAssigned Employees:");
 
-        if (assignedEmployees.isEmpty()) {
-            sb.append("No employees assigned.");
-        } else {
-            for (EmployeeAssignment ea : assignedEmployees) {
-                sb.append("\n").append(ea);
-            }
+    if (assignedEmployees.isEmpty()) {
+        sb.append(" None");
+    } else {
+        for (EmployeeAssignment ea : assignedEmployees) {
+            sb.append("\n").append(ea);
         }
-        return sb.toString();
     }
+
+    return sb.toString();
+}
 }
