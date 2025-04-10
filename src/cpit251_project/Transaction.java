@@ -7,34 +7,38 @@ import java.util.List;
 public class Transaction {
 
     private String transactionName;
+    private String content; 
     private LocalDate startDate;
     private LocalDate endDate;
-    private static int idCounter = 1;  
-    private final String ID;  
-    private static List<String> generatedIDs = new ArrayList<>();  // List to track generated IDs
+    private static int idCounter = 1;
+    private final String ID;
+    private static List<String> generatedIDs = new ArrayList<>();
+    private final List<EmployeeAssignment> assignedEmployees = new ArrayList<>();
 
-    // Constructor
     public Transaction(String transactionName, LocalDate startDate, LocalDate endDate) {
         this.transactionName = transactionName;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.ID = generateUniqueID();  // Generate a unique ID
-    
+        this.ID = generateUniqueID();
     }
 
-   
-   // Generate a unique transaction ID by checking manually for duplicates
     private static String generateUniqueID() {
-        String newID = "Transaction-" + idCounter++;  // Generate ID
-        // Check if the ID already exists in the list
-        while (generatedIDs.contains(newID)) {
-            newID = "Transaction-" + idCounter++;  // Generate a new ID if duplicate found
-        }
-        generatedIDs.add(newID);  // Add the new unique ID to the list
-        return newID;  // Return the unique ID
+        String newID;
+        do {
+            newID = "Transaction-" + idCounter++;
+        } while (generatedIDs.contains(newID));
+        generatedIDs.add(newID);
+        return newID;
     }
 
-    // Getter methods
+    public void assignEmployee(String employeeName, LocalDate deadline) {
+        assignedEmployees.add(new EmployeeAssignment(employeeName, deadline));
+    }
+
+    public List<EmployeeAssignment> getAssignedEmployees() {
+        return assignedEmployees;
+    }
+
     public String getID() {
         return ID;
     }
@@ -51,7 +55,14 @@ public class Transaction {
         return endDate;
     }
 
-    // Setter methods
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     public void setTransactionName(String transactionName) {
         this.transactionName = transactionName;
     }
@@ -64,11 +75,25 @@ public class Transaction {
         this.endDate = endDate;
     }
 
-    
-    
     @Override
     public String toString() {
-          return String.format("Transaction ID: %s%nTransaction Name: %s%nStart Date: %s%nEnd Date: %s",
-            ID, transactionName, startDate, endDate);
+        StringBuilder sb = new StringBuilder();
+        sb.append("------------------------------\n");
+        sb.append("Transaction ID: ").append(ID)
+          .append("\nTransaction Name: ").append(transactionName)
+          .append("\nContent: ").append(content) // ✅ Show content
+          .append("\nStart Date: ").append(startDate)
+          .append("\nEnd Date: ").append(endDate)
+          .append("\nAssigned Employees:");
+
+        if (assignedEmployees.isEmpty()) {
+            sb.append(" None");
+        } else {
+            for (EmployeeAssignment ea : assignedEmployees) {
+                sb.append("\n").append(ea);
+            }
+        }
+
+        return sb.toString();
     }
 }
