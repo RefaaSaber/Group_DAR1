@@ -8,7 +8,7 @@ public class Manager {
 
     private final Scanner inputScanner = new Scanner(System.in);
 
-    // Method to create a transaction without assigning employees immediately
+    
     public Transaction createTransactionOnly() {
         printHeader("Create New Transaction");
 
@@ -31,7 +31,7 @@ public class Manager {
         return transaction;
     }
 
-    // Method to assign employees to an existing transaction
+    
     public void assignEmployeesToExistingTransaction(Transaction transaction) {
         if (transaction == null) {
             System.out.println("No transaction selected.");
