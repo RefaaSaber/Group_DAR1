@@ -40,12 +40,12 @@ public class Manager {
         assignEmployees(transaction, transaction.getStartDate(), transaction.getEndDate());
     }
 
-    private String promptText(String prompt) {
+    protected String promptText(String prompt) {
         System.out.print(prompt);
         return inputScanner.nextLine().trim();
     }
 
-    private LocalDate promptDate(String prompt) {
+    protected LocalDate promptDate(String prompt) {
         while (true) {
             try {
                 return LocalDate.parse(promptText(prompt));
