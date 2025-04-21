@@ -64,6 +64,3 @@ public class CPIT251_project {
     }
 }
 
-        scanner.close();
-    }
-}
