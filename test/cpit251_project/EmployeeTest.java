@@ -28,14 +28,12 @@ public class EmployeeTest {
 
   
 
-    /**
-     * Test of getAssignedTransactions method, of class Employee.
-     */
+   //test getAssignedTransactions method
+    
     @Test
     public void testGetAssignedTransactions() {
-        System.out.println("getAssignedTransactions");
-
-        // Ensure that the transactions are added to the employee’s list
+         System.out.println("getAssignedTransactions");
+        // Ensure that the transactions are added to the employees list
         employee.receiveTransaction(transaction1);
         employee.receiveTransaction(transaction2);
 
@@ -44,23 +42,16 @@ public class EmployeeTest {
         expResult.add(transaction2);
 
         List<Transaction> result = employee.getAssignedTransactions();
-
-        // Manually compare each transaction's fields
-        assertEquals(expResult.size(), result.size());  
-        for (int i = 0; i < expResult.size(); i++) {
-            Transaction expected = expResult.get(i);
-            Transaction actual = result.get(i);
-            assertEquals(expected.getTransactionName(), actual.getTransactionName());
-            assertEquals(expected.getStartDate(), actual.getStartDate());
-            assertEquals(expected.getEndDate(), actual.getEndDate());
-        }
+        
+        assertEquals(expResult, result);
+      
     }
 
-    /**
-     * Test of isAssignedToTransaction method, of class Employee.
-     */
+    ///Test of isAssignedToTransaction method, of class Employee.
+     
     @Test
     public void testIsAssignedToTransaction() {
+        System.out.println("getAssignedTransactions");
         System.out.println("isAssignedToTransaction");
         boolean expResult = true;
         boolean result = employee.isAssignedToTransaction(transaction1);
@@ -71,9 +62,9 @@ public class EmployeeTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of receiveTransaction method, of class Employee.
-     */
+    
+     //Test of receiveTransaction method
+     
     @Test
     public void testReceiveTransaction() {
         System.out.println("receiveTransaction");
@@ -84,15 +75,14 @@ public class EmployeeTest {
         assertTrue(employee.getAssignedTransactions().contains(transaction2));
     }
 
-    /**
-     * Test of viewAssignedTransactions method, of class Employee.
-     */
+    
+     //Test of viewAssignedTransactions method
+    
     @Test
     public void testViewAssignedTransactions() {
         System.out.println("viewAssignedTransactions");
         employee.receiveTransaction(transaction1);
         employee.receiveTransaction(transaction2);
-
         employee.viewAssignedTransactions();  
     }
 }
