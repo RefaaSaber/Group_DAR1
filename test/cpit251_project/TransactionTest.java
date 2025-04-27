@@ -13,17 +13,6 @@ import static org.junit.Assert.*;
 
 public class TransactionTest {
 
-    @Before
-    public void resetStaticState() throws Exception {
-        Field counterField = Transaction.class.getDeclaredField("idCounter");
-        counterField.setAccessible(true);
-        counterField.set(null, 1);
-
-        Field idsField = Transaction.class.getDeclaredField("generatedIDs");
-        idsField.setAccessible(true);
-        List<String> ids = (List<String>) idsField.get(null);
-        ids.clear();
-    }
 
     @Test
     public void testTransactionInitialization() {
