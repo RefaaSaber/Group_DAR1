@@ -7,7 +7,7 @@ import java.util.List;
 public class Transaction {
 
     private String transactionName;
-    private String content; 
+    private String content;
     private LocalDate startDate;
     private LocalDate endDate;
     private static int idCounter = 1;
@@ -47,12 +47,24 @@ public class Transaction {
         return transactionName;
     }
 
+    public void setTransactionName(String transactionName) {
+        this.transactionName = transactionName;
+    }
+
     public LocalDate getStartDate() {
         return startDate;
     }
 
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
     public LocalDate getEndDate() {
         return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
     }
 
     public String getContent() {
@@ -63,28 +75,16 @@ public class Transaction {
         this.content = content;
     }
 
-    public void setTransactionName(String transactionName) {
-        this.transactionName = transactionName;
-    }
-
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("------------------------------\n");
         sb.append("Transaction ID: ").append(ID)
-          .append("\nTransaction Name: ").append(transactionName)
-          .append("\nContent: ").append(content) // ✅ Show content
-          .append("\nStart Date: ").append(startDate)
-          .append("\nEnd Date: ").append(endDate)
-          .append("\nAssigned Employees:");
+                .append("\nTransaction Name: ").append(transactionName)
+                .append("\nContent: ").append(content)
+                .append("\nStart Date: ").append(startDate)
+                .append("\nEnd Date: ").append(endDate)
+                .append("\nAssigned Employees:");
 
         if (assignedEmployees.isEmpty()) {
             sb.append(" None");

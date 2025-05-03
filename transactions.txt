@@ -1,2 +1,46 @@
-work,2025-01-22,2025-07-22
-cdc,2011-01-11,2030-01-11
+------------------------------
+Transaction ID: Transaction-1
+Transaction Name: Website Redesign and Testing
+Content: Redesign the company’s homepage and improve user experience and test the changes.
+Start Date: 2025-04-02
+End Date: 2025-04-21
+Assigned Employees:
+Employee: Ali, Deadline: 2025-04-18
+==========================================
+------------------------------
+Transaction ID: Transaction-2
+Transaction Name: Mobile App Testing
+Content: UI/UX and functional testing on the new IOS app releases.
+Start Date: 2025-04-10
+End Date: 2025-04-30
+Assigned Employees:
+Employee: Omar, Deadline: 2025-04-25
+Employee: Layla, Deadline: 2025-04-28
+==========================================
+------------------------------
+Transaction ID: Transaction-3
+Transaction Name: Database Migration
+Content: Migrate the legacy database to a cloud based system.
+Start Date: 2025-04-05
+End Date: 2025-04-25
+Assigned Employees:
+Employee: Youssef, Deadline: 2025-04-20
+==========================================
+------------------------------
+Transaction ID: Transaction-4
+Transaction Name: Employee Training sessions
+Content: Review and resolve all pending IT support tickets.
+Start Date: 2025-05-07
+End Date: 2025-05-10
+Assigned Employees:
+Employee: Hassan, Deadline: 2025-05-08
+==========================================
+------------------------------
+Transaction ID: Transaction-5
+Transaction Name: Server Maintenance
+Content: Perform scheduled maintenance on backend servers.
+Start Date: 2025-06-03
+End Date: 2025-06-09
+Assigned Employees:
+Employee: Layla, Deadline: 2025-06-07
+==========================================

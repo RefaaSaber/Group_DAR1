@@ -17,36 +17,15 @@ public class Employee {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public List<Transaction> getAssignedTransactions() {
         return assignedTransactions;
     }
 
-    public void setAssignedTransactions(List<Transaction> transactions) {
-        this.assignedTransactions = transactions;
-    }
-    
-public boolean isAssignedToTransaction(Transaction transaction) {
-    for (EmployeeAssignment assignment : transaction.getAssignedEmployees()) {
-        if (assignment.getEmployeeName().equalsIgnoreCase(name)) {
-            return true;
+    public void receiveTransaction(Transaction transaction) {
+        if (!assignedTransactions.contains(transaction)) {
+            assignedTransactions.add(transaction);
         }
     }
-    return false;
-}
-
-
-
-   public void receiveTransaction(Transaction transaction) {
-    if (isAssignedToTransaction(transaction) && !assignedTransactions.contains(transaction)) {
-        assignedTransactions.add(transaction);
-    }
-}
-   
-   
 
     public void viewAssignedTransactions() {
         System.out.println("Transactions assigned to " + name + ":");
@@ -55,9 +34,7 @@ public boolean isAssignedToTransaction(Transaction transaction) {
         } else {
             for (Transaction t : assignedTransactions) {
                 System.out.println(t);
-                System.out.println("---------------------------------");
             }
         }
     }
-
 }

@@ -25,7 +25,7 @@ public class CPIT251_project {
                 while (!backToMain) {
                     System.out.println("\n--- Manager Options ---");
                     System.out.println("1. Create New Transaction");
-                    System.out.println("2. Assign Employees to a Transaction");
+                    System.out.println("2. Edit Existing Transaction");
                     System.out.println("3. View All Transactions");
                     System.out.println("4. Back to Main Menu");
                     System.out.print("Select an option: ");
@@ -47,19 +47,17 @@ public class CPIT251_project {
                                 System.out.println((i + 1) + ". " + allTransactions.get(i).getTransactionName());
                             }
 
-                            System.out.print("Enter the number of the transaction to assign employees: ");
+                            System.out.print("Enter the number of the transaction to edit: ");
                             String indexInput = scanner.nextLine().trim();
 
                             try {
                                 int index = Integer.parseInt(indexInput) - 1;
                                 if (index >= 0 && index < allTransactions.size()) {
-                               manager.assignEmployeesToExistingTransaction(allTransactions.get(index));
-                              new TransactionFileClass().overwriteAllTransactions(allTransactions);
-                           } else {
-                           System.out.println("Invalid selection.");
-                           }
-
-
+                                    manager.editTransaction(allTransactions.get(index));
+                                    new TransactionFileClass().overwriteAllTransactions(allTransactions);
+                                } else {
+                                    System.out.println("Invalid selection.");
+                                }
                             } catch (NumberFormatException e) {
                                 System.out.println("Please enter a valid number.");
                             }
@@ -73,6 +71,7 @@ public class CPIT251_project {
                                 System.out.println(t);
                                 System.out.println("-----------------------------------");
                             }
+
                         }
 
                     } else if (option.equals("4")) {

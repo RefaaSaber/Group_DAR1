@@ -22,9 +22,9 @@ public class TransactionFileClass {
             writer.write(System.lineSeparator());
             writer.write("==========================================");
             writer.write(System.lineSeparator());
-            System.out.println(" Transaction saved to file!");
+            System.out.println("Transaction saved to file!");
         } catch (IOException e) {
-            System.out.println(" Error saving transaction: " + e.getMessage());
+            System.out.println("Error saving transaction: " + e.getMessage());
         }
     }
 
@@ -36,9 +36,9 @@ public class TransactionFileClass {
                 writer.write("==========================================");
                 writer.write(System.lineSeparator());
             }
-            System.out.println(" All transactions saved to file.");
+            System.out.println("All transactions saved to file.");
         } catch (IOException e) {
-            System.out.println(" Error saving transactions: " + e.getMessage());
+            System.out.println("Error saving transactions: " + e.getMessage());
         }
     }
 }
