@@ -19,50 +19,97 @@ public class CPIT251_project {
             System.out.print("\nAre you a (1) Manager, (2) Employee, or (3) Exit? ");
             String role = scanner.nextLine().trim();
 
-            if (role.equals("1")) {
-                System.out.println("\n--- Manager Section ---");
-                Transaction transaction = manager.createTransaction();
+            if (role.equals("1")) {  // Manager Mode
+                boolean backToMain = false;
 
-                if (transaction != null) {
-                    allTransactions.add(transaction);
-                    new TransactionFileClass().appendTransactionToFile(transaction);
-                    System.out.println("Transaction successfully created and saved.");
+                while (!backToMain) {
+                    System.out.println("\n--- Manager Options ---");
+                    System.out.println("1. Create New Transaction");
+                    System.out.println("2. Edit Existing Transaction");
+                    System.out.println("3. View All Transactions");
+                    System.out.println("4. Back to Main Menu");
+                    System.out.print("Select an option: ");
+                    String option = scanner.nextLine().trim();
+
+                    if (option.equals("1")) {  // Create New Transaction
+                        Transaction newTransaction = manager.createTransactionOnly();
+                        if (newTransaction != null) {
+                            allTransactions.add(newTransaction);
+                            new TransactionFileClass().appendTransactionToFile(newTransaction);
+                        }
+
+                    } else if (option.equals("2")) {  // Edit Existing Transaction
+                        if (allTransactions.isEmpty()) {
+                            System.out.println("No transactions available.");
+                        } else {
+                            System.out.println("Available Transactions:");
+                            for (int i = 0; i < allTransactions.size(); i++) {
+                                System.out.println((i + 1) + ". " + allTransactions.get(i).getTransactionName());
+                            }
+
+                            System.out.print("Enter the number of the transaction to edit: ");
+                            String indexInput = scanner.nextLine().trim();
+
+                            try {
+                                int index = Integer.parseInt(indexInput) - 1;
+                                if (index >= 0 && index < allTransactions.size()) {
+                                    manager.editTransaction(allTransactions.get(index));
+                                    new TransactionFileClass().overwriteAllTransactions(allTransactions);
+                                } else {
+                                    System.out.println("Invalid selection.");
+                                }
+                            } catch (NumberFormatException e) {
+                                System.out.println("Please enter a valid number.");
+                            }
+                        }
+
+                    } else if (option.equals("3")) {  // View All Transactions
+                        if (allTransactions.isEmpty()) {
+                            System.out.println("No transactions to display.");
+                        } else {
+                            for (Transaction t : allTransactions) {
+                                System.out.println(t);
+                                System.out.println("-----------------------------------");
+                            }
+
+                        }
+
+                    } else if (option.equals("4")) {  // Back to Main Menu
+                        backToMain = true;  // Exit the Manager Menu and go back to the main menu
+
+                    } else {
+                        System.out.println("Invalid option.");
+                    }
                 }
-                System.out.println("--- End of Manager Section ---");
 
-            } else if (role.equals("2")) {
+            } else if (role.equals("2")) {  // Employee Mode
                 System.out.println("\n--------- Employee Section ---------");
                 System.out.print("Enter your name: ");
                 String employeeName = scanner.nextLine().trim();
                 Employee employee = new Employee(employeeName);
 
-              
                 for (Transaction t : allTransactions) {
                     for (EmployeeAssignment assignedEmployee : t.getAssignedEmployees()) {
                         if (assignedEmployee.getEmployeeName().equalsIgnoreCase(employeeName)) {
-                            employee.receiveTransaction(t);  
-                            break;  
+                            employee.receiveTransaction(t);
+                            break;
                         }
                     }
                 }
-               
+
                 employee.viewAssignedTransactions();
                 System.out.println("--------- End of Employee Section ---------");
-                
-                
-            } else if (role.equals("3")) {
+
+            } else if (role.equals("3")) {  // Exit Program
                 System.out.println("Thank you for using the system.");
                 break;
+
             } else {
                 System.out.println("Invalid option. Try again.");
             }
 
             System.out.println("==================================");
         }
-
-        scanner.close();
-    }
-}
 
         scanner.close();
     }

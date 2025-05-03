@@ -22,15 +22,23 @@ public class TransactionFileClass {
             writer.write(System.lineSeparator());
             writer.write("==========================================");
             writer.write(System.lineSeparator());
-            System.out.println(" Transaction saved to file!");
+            System.out.println("Transaction saved to file!");
         } catch (IOException e) {
-            System.out.println(" Error saving transaction: " + e.getMessage());
+            System.out.println("Error saving transaction: " + e.getMessage());
         }
     }
 
-    public void appendMultipleTransactions(List<Transaction> transactions) {
-        for (Transaction t : transactions) {
-            appendTransactionToFile(t);
+    public void overwriteAllTransactions(List<Transaction> transactions) {
+        try (FileWriter writer = new FileWriter(fileName, false)) {
+            for (Transaction t : transactions) {
+                writer.write(t.toString());
+                writer.write(System.lineSeparator());
+                writer.write("==========================================");
+                writer.write(System.lineSeparator());
+            }
+            System.out.println("All transactions saved to file.");
+        } catch (IOException e) {
+            System.out.println("Error saving transactions: " + e.getMessage());
         }
     }
 }

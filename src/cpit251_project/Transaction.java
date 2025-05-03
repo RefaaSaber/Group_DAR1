@@ -7,6 +7,7 @@ import java.util.List;
 public class Transaction {
 
     private String transactionName;
+    private String content;
     private LocalDate startDate;
     private LocalDate endDate;
     private static int idCounter = 1;
@@ -23,12 +24,12 @@ public class Transaction {
 
     private static String generateUniqueID() {
         String newID;
-    do {
-        newID = "Transaction-" + idCounter++;
-    }    while (generatedIDs.contains(newID));
-    generatedIDs.add(newID);
-    return newID;
-}
+        do {
+            newID = "Transaction-" + idCounter++;
+        } while (generatedIDs.contains(newID));
+        generatedIDs.add(newID);
+        return newID;
+    }
 
     public void assignEmployee(String employeeName, LocalDate deadline) {
         assignedEmployees.add(new EmployeeAssignment(employeeName, deadline));
@@ -46,44 +47,53 @@ public class Transaction {
         return transactionName;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
-    }
-
-    public LocalDate getEndDate() {
-        return endDate;
-    }
-
     public void setTransactionName(String transactionName) {
         this.transactionName = transactionName;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
     }
 
     public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
-    @Override
-    public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("------------------------------\n");
-    sb.append("Transaction ID: ").append(ID)
-      .append("\nTransaction Name: ").append(transactionName)
-      .append("\nStart Date: ").append(startDate)
-      .append("\nEnd Date: ").append(endDate)
-      .append("\nAssigned Employees:");
-
-    if (assignedEmployees.isEmpty()) {
-        sb.append(" None");
-    } else {
-        for (EmployeeAssignment ea : assignedEmployees) {
-            sb.append("\n").append(ea);
-        }
+    public String getContent() {
+        return content;
     }
 
-    return sb.toString();
-}
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("------------------------------\n");
+        sb.append("Transaction ID: ").append(ID)
+          .append("\nTransaction Name: ").append(transactionName)
+          .append("\nContent: ").append(content)
+          .append("\nStart Date: ").append(startDate)
+          .append("\nEnd Date: ").append(endDate)
+          .append("\nAssigned Employees:");
+
+        if (assignedEmployees.isEmpty()) {
+            sb.append(" None");
+        } else {
+            for (EmployeeAssignment ea : assignedEmployees) {
+                sb.append("\n").append(ea);
+            }
+        }
+
+        return sb.toString();
+    }
 }
