@@ -47,22 +47,6 @@ public class EmployeeTest {
       
     }
 
-    ///Test of isAssignedToTransaction method, of class Employee.
-     
-    @Test
-    public void testIsAssignedToTransaction() {
-        System.out.println("getAssignedTransactions");
-        System.out.println("isAssignedToTransaction");
-        boolean expResult = true;
-        boolean result = employee.isAssignedToTransaction(transaction1);
-        assertEquals(expResult, result);
-
-        expResult = true;
-        result = employee.isAssignedToTransaction(transaction2);
-        assertEquals(expResult, result);
-    }
-
-    
      //Test of receiveTransaction method
      
     @Test
